@@ -54,7 +54,7 @@ func (g *grpc) Generate(file *generator.FileDescriptor) {
 	g.P("/****************************************  SDK BEGIN ****************************************/")
 	g.P()
 	g.P("// Reference imports to suppress errors if they are not otherwise used.")
-	g.P("var _ = sync.WaitGroup{}")
+	g.P("var _ = (*sync.WaitGroup)(nil)")
 	g.P("var _ = atomic.LoadPointer")
 	g.P("var _ = unsafe.Sizeof(0)")
 	g.P()
