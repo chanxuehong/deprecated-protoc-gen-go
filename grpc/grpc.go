@@ -50,6 +50,9 @@ func (g *grpc) Generate(file *generator.FileDescriptor) {
 	if len(file.FileDescriptorProto.Service) == 0 {
 		return
 	}
+	if len(file.FileDescriptorProto.Service) != 1 {
+		panic("plugin grpcx only supports one service proto")
+	}
 
 	g.P("/****************************************  SDK BEGIN ****************************************/")
 	g.P()
@@ -62,6 +65,7 @@ func (g *grpc) Generate(file *generator.FileDescriptor) {
 	for i, service := range file.FileDescriptorProto.Service {
 		g.generateService(file, service, i)
 	}
+
 	g.P()
 	g.P("/****************************************  SDK END ****************************************/")
 }
@@ -71,6 +75,10 @@ func (g *grpc) GenerateImports(file *generator.FileDescriptor) {
 	if len(file.FileDescriptorProto.Service) == 0 {
 		return
 	}
+	if len(file.FileDescriptorProto.Service) != 1 {
+		panic("plugin grpcx only supports one service proto")
+	}
+
 	g.P("import (")
 	g.P(strconv.Quote(path.Join(g.gen.ImportPrefix, "sync")))
 	g.P(strconv.Quote(path.Join(g.gen.ImportPrefix, "sync/atomic")))
