@@ -11,7 +11,7 @@ import (
 // Paths for packages used by code generated in this file,
 // relative to the import_prefix of the generator.Generator.
 const (
-	qscgrpcPkgPath = "code.qschou.com/qschou/go_common/grpc/internal/grpc"
+	qscgrpcPkgPath = "code.qschou.com/qschou/go_common/grpc"
 )
 
 func init() {
